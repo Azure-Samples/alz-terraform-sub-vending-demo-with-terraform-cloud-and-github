@@ -7,7 +7,6 @@ on:
 jobs:
   deploy-to-dev:
     runs-on: ubuntu-latest
-    environment: dev
     steps:
       - name: Checkout
         uses: actions/checkout@v2.5.0
