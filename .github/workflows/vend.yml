@@ -5,7 +5,8 @@ on:
     types: [vend_subscription]
   
 jobs:
-  deploy-to-dev:
+  vend_subscription:
+    name: "Vend Subscription"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

@@ -73,11 +73,14 @@ TBC
 1. Ensure `Apply to specific projects and workspaces` is selected.
 1. Click `Select projects` and select `sub-vend-demo-mgmt`.
 1. Scroll down and repeat the process of clicking `Add variable`, selecting `Environment variable`, filling our the `Key` and `Value` and clicking `Add variable` as follows:
+    1. Check the `Sensitive` box for `GITHUB_TOKEN`: The GitHub PAT you created earlier
     1. `ARM_TENANT_ID`: Your Azure Tenant Id
     1. `ARM_SUBSCRIPTION_ID`: Your Azure Subscription Id (remember this won't be used, but is require by the Terraform provider)
     1. `ARM_CLIENT_ID`: The client ID of the service principal that was setup for subscription vending
     1. Check the `Sensitive` box for `ARM_CLIENT_SECRET`: The client secret of the service principal that was setup for subscription vending
 1. repeat the process of clicking `Add variable`, selecting `Terraform variable`, filling our the `Key` and `Value` and clicking `Add variable` as follows:
+    1. `terraform_cloud_organisation`: This is the name of you Terraform Cloud Organisation.
+    1. `terraform_cloud_user_project`: This is `sub-vend-demo-user`.
     1. `billing_account_type`: Choose between `ea`, `mca` or `mpa` depending on your account type
     1. `billing_account_name`: The name of your billing account. This is the `Billing account ID` of your billing account, such as `7690848` for EA or `e879cf0f-2b4d-5431-109a-f72fc9868693:024cabf4-7321-4cf9-be59-df0c77ca51de_2019-05-31` for MCA or MPA.
     1. If you are using EA Billing then enter these variables:
@@ -106,4 +109,10 @@ TBC
 
 #### Setup the demo
 
-1. Open Visual Studio Code and open the folder of your forked repository
+1. Open Visual Studio Code and open the folder of your forked repository.
+1. Copy the `examples/trigger_vend_example.ps1` and name the file `examples/trigger_vend_demo.ps1`.
+1. Open the `trigger_vend_demo.ps1` and edit the variable values as follows:
+    1. `$owner`: This is the GitHub organisation that you forked this repository into.
+    1. `$repository`: This is the name of your forked repository
+    1. `$access_token`: This is the GitHub PAT you created earlier
+    1. 

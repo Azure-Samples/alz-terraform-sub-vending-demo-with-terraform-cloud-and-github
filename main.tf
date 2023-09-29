@@ -39,7 +39,7 @@ module "lz_vending" {
   umi_resource_group_name = local.identity_resource_group_name
   umi_role_assignments = { for key, resource_group in var.resource_groups : key => {
     definition     = "Contributor"
-    relative_scope = "/resourceGroups/${each.value.name}"
+    relative_scope = "/resourceGroups/${resource_group.name}"
     }
   }
   umi_federated_credentials_terraform_cloud = {
