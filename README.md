@@ -1,57 +1,57 @@
-# Project Name
+---
+page_type: sample
+languages:
+- terraform
+- hcl
+- yaml
+name: Azure Landing Zones Subscription Vending with Terraform, Terraform Cloud and GitHub
+description: A sample showing an example of self-service subscription vending with GitHub and Terraform Cloud.
+products:
+- azure
+- github
+urlFragment: alz-terraform-sub-vending
+---
 
-(short, 1-3 sentenced, description of the project)
+# Azure Landing Zones Subscription Vending with Terraform, Terraform Cloud and GitHub
+
+This example shows one approach to self-service subscription vending in Azure. It leverages the ALZ Terrafrom subscription vending module, Terraform Cloud and GitHub to demonstrate an end to end process of vending subscriptions for different use cases.
+
+## Content
+
+| File/folder | Description |
+|-------------|-------------|
+| `terraform-example-deploy` | Some Terraform with Azure Resources for the demo to deploy. |
+| `terraform-oidc-config` | The Terraform to configure Azure and Azure DevOps ready for Managed Identity or OIDC authenticaton. |
+| `.gitignore` | Define what to ignore at commit time. |
+| `CHANGELOG.md` | List of changes to the sample. |
+| `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
+| `README.md` | This README file. |
+| `LICENSE.md` | The license for the sample. |
 
 ## Features
 
-This project framework provides the following features:
-
-* Feature 1
-* Feature 2
-* ...
+TBC
 
 ## Getting Started
 
 ### Prerequisites
 
-(ideally very short, if any)
-
-- OS
-- Library version
-- ...
+- HashiCorp Terraform CLI: [Download](https://www.terraform.io/downloads)
+- Azure CLI: [Download](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli#install-or-update)
+- An Azure Tenant with Billing Account Access
+- A GitHub Organization: [Free Organization](https://aex.dev.azure.com/signup/)
 
 ### Installation
 
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
+- Fork the repository. This is important as you need to be able to run the GitHub Actions in your organisation.
+- Clone it locally.
+- Follow the quickstart.
 
 ### Quickstart
-(Add steps to get up and running quickly)
 
-1. git clone [repository clone url]
-2. cd [repository name]
-3. ...
+There are a few manual steps to get this demo up and running:
 
+#### Fork and Setup Variables
 
-## Demo
+1. 
 
-A demo app is included to show how to use the project.
-
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
-
-## Resources
-
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...

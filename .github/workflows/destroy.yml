@@ -1,0 +1,26 @@
+name: "Subscription Destruction"
+
+on:
+  repository_dispatch:
+    types: [destroy_subscription]
+  
+jobs:
+  deploy-to-dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.5.0
+      - name: Vend Subscription
+        run: |
+          $subscriptionData = $env:EVENT_PAYLOAD
+          Write-Host $subscriptionData
+
+          ./scripts/destroy_subscription.ps1 -subscriptionData $subscriptionData -terraformCloudUrl $env:TERRAFORM_CLOUD_URL -terraformCloudAccessToken $env:TERRAFORM_CLOUD_TOKEN -terraformCloudOrganisation $env:TERRAFORM_CLOUD_ORGANISATION -terraformCloudProject $env:TERRAFORM_CLOUD_PROJECT
+        shell: pwsh
+        env:
+          EVENT_PAYLOAD: ${{ toJson(github.event.client_payload.subscriptionData) }}
+          TERRAFORM_CLOUD_URL: ${{ vars.TERRAFORM_CLOUD_URL }}
+          TERRAFORM_CLOUD_TOKEN: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
+          TERRAFORM_CLOUD_ORGANISATION: ${{ vars.TERRAFORM_CLOUD_ORGANISATION }}
+          TERRAFORM_CLOUD_PROJECT: ${{ vars.TERRAFORM_CLOUD_PROJECT }}
