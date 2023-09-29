@@ -55,6 +55,10 @@ There are a few manual steps to get this demo up and running. Please note that t
 
 TBC
 
+1. Check the following scopes:
+    1. `repo`
+    1. `delete_repo`
+
 #### Generate a Terraform Cloud API Token
 
 TBC
