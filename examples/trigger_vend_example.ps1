@@ -8,6 +8,10 @@ $subscriptionData = @"
     "subscription_offer": "DevTest",
     "subscription_description": "Demo Subscription 001",
     "subscription_management_group": "management-group-name",
+    "resource_groups": [
+        "rg-demo-001",
+        "rg-demo-002"
+    ],
     "subscription_owners": [
         "abc@def.com",
         "ghi@jkl.com"
