@@ -1,15 +1,9 @@
-variable "tfe_organisation_name" {
+variable "terraform_cloud_organisation" {
   type        = string
-  description = "The Terraform Cloud Organisation to create the workspace in."
+  description = "The Terraform Cloud Organisation to create the user workspace in."
 }
 
-variable "tfe_project" {
+variable "terraform_cloud_user_project" {
   type        = string
-  description = "The Terraform Cloud Organisation to create the workspace in."
-}
-
-variable "tfe_team_access" {
-  type        = string
-  description = "The default access level for the Terraform Cloud Team that is created."
-  default     = "write"
+  description = "The Terraform Cloud Organisation to create the user workspace in."
 }

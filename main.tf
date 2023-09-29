@@ -1,9 +1,8 @@
 module "terraform_cloud_workspace" {
   source                  = "./modules/tfworkspace"
   workspace_name          = local.terraform_cloud_workspace_name
-  organisation            = var.tfe_organisation_name
-  team_access             = var.tfe_team_access
-  project_name            = var.tfe_project
+  organisation            = var.terraform_cloud_organisation
+  project_name            = var.terraform_cloud_user_project
   arm_subscription_id     = module.lz_vending.subscription_id
   arm_tenant_id           = data.azuread_client_config.current.tenant_id
   tfc_azure_run_client_id = module.lz_vending.umi_client_id
@@ -46,15 +45,15 @@ module "lz_vending" {
   umi_federated_credentials_terraform_cloud = {
     plan = {
       name         = "${var.subscription_name}-plan"
-      organization = var.tfe_organisation_name
-      project      = var.tfe_project
+      organization = var.terraform_cloud_organisation
+      project      = var.terraform_cloud_user_project
       workspace    = local.terraform_cloud_workspace_name
       run_phase    = "plan"
     }
     apply = {
       name         = "${var.subscription_name}-apply"
-      organization = var.tfe_organisation_name
-      project      = var.tfe_project
+      organization = var.terraform_cloud_organisation
+      project      = var.terraform_cloud_user_project
       workspace    = local.terraform_cloud_workspace_name
       run_phase    = "apply"
     }

@@ -100,7 +100,10 @@ TBC
     1. `TERRAFORM_CLOUD_URL`: This is `app.terraform.io`, unless you are using Terraform Enterprise, in which case enter the the url of your instance.
     1. `TERRAFORM_CLOUD_ORGANISATION`: This is the name of you Terraform Cloud Organisation.
     1. `TERRAFORM_CLOUD_PROJECT`: This is `sub-vend-demo-mgmt`.
+1. Click `Actions` in the top menu.
+1. Click `I understand my workflows, go ahead and enable them`.
 1. Ok, we are all done with the GitHub configuration.
 
+#### Setup the demo
 
-
+1. Open Visual Studio Code and open the folder of your forked repository
