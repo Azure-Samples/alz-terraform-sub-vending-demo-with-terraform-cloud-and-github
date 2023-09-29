@@ -73,6 +73,7 @@ TBC
 1. Ensure `Apply to specific projects and workspaces` is selected.
 1. Click `Select projects` and select `sub-vend-demo-mgmt`.
 1. Scroll down and repeat the process of clicking `Add variable`, selecting `Environment variable`, filling our the `Key` and `Value` and clicking `Add variable` as follows:
+    1. Check the `Sensitive` box for `TFE_TOKEN`: The Terraform Cloud API Token you created earlier
     1. Check the `Sensitive` box for `GITHUB_TOKEN`: The GitHub PAT you created earlier
     1. `ARM_TENANT_ID`: Your Azure Tenant Id
     1. `ARM_SUBSCRIPTION_ID`: Your Azure Subscription Id (remember this won't be used, but is require by the Terraform provider)
@@ -115,4 +116,15 @@ TBC
     1. `$owner`: This is the GitHub organisation that you forked this repository into.
     1. `$repository`: This is the name of your forked repository
     1. `$access_token`: This is the GitHub PAT you created earlier
-    1. 
+    1. ``
+
+#### Run the demo
+
+1. Open a terminal in Visual Studio Code.
+1. Navigate to the the `examples` folder with `cd examples`.
+1. Run `./trigger_vend_demo.ps1`.
+1. Open your GitHub forked repository in the browser.
+1. Navigate to `Actions` in the top menu.
+1. Click on the running action and watch what it is doing.
+1. Also navigate to Terrafrom Cloud and watch the workspaces being created and run.
+1. When all the runs are finished, you can navigate to the Azure portal and take a look at the subscription and resources that have been created.

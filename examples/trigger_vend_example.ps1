@@ -7,7 +7,7 @@ $subscriptionData = @"
     "location": "uksouth",
     "subscription_offer": "DevTest",
     "subscription_description": "Demo Subscription 001",
-    "subscription_management_group": "Tenant Root Group",
+    "subscription_management_group": "sub-vending-demo",
     "resource_groups": {
         "rg-demo-001": {
             "name": "rg-demo-001",
