@@ -35,6 +35,7 @@ variable "resource_groups" {
   type = map(object({
     name     = string
     location = string
+    primary  = bool
   }))
   description = "The resource groups to create in the subscription"
 }
