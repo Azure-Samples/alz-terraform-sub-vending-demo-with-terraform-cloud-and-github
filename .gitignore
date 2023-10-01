@@ -33,3 +33,4 @@ override.tf.json
 .terraformrc
 terraform.rc
 trigger_vend_demo.ps1
+trigger_destroy_demo.ps1

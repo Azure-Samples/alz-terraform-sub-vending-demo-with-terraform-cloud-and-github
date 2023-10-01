@@ -5,10 +5,6 @@ param(
     [string]$subscriptionData
 )
 
-Write-Host "subscriptionData: $subscriptionData"
-
-exit
-
 $headers=@{
   "Authorization" = "Bearer $access_token"
   "X-GitHub-Api-Version" = "2022-11-28"

@@ -12,8 +12,6 @@ Write-Host "terraformCloudUrl: $terraformCloudUrl"
 Write-Host "terraformCloudAccessToken: $terraformCloudAccessToken"
 Write-Host "subscriptionData: $subscriptionData"
 
-exit
-
 $subscriptionVariables = ConvertFrom-Json $subscriptionData
 
 $vendWorkspaceName = $subscriptionVariables.subscription_name
