@@ -66,6 +66,7 @@ module "lz_vending" {
       location = resource_group.location
     }
   }
+}
 
 module "github" {
   source                         = "./modules/github"
