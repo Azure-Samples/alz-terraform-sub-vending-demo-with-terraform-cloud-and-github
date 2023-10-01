@@ -177,6 +177,14 @@ For now need a management group other than whatever you default Management Group
         1. `persona_template_repository`: Don't change this
         1. `repository_organisation`: Set this to the GitHub organisation you wish your user repository to be created in.
 1. Save the file.
+1. Copy the `examples/trigger_destroy_example.ps1` and name the file `examples/trigger_destroy_demo.ps1`.
+1. Open the `trigger_destroy_demo.ps1` and edit the variable values as follows:
+    1. `$owner`: This is the GitHub organisation that you forked this repository into
+    1. `$repository`: This is the name of your forked repository
+    1. `$access_token`: This is the GitHub PAT you created earlier
+    1. `$subscriptionData`: This is the payload for our example. Edit the following values as follow:
+        1. `subscription_name`: You only need to change this if you changed it in the vend file
+1. Save the file
 1. Ok, we are all done with the setup.
 
 #### Run the demo
@@ -189,3 +197,14 @@ For now need a management group other than whatever you default Management Group
 1. Click on the running action and watch what it is doing.
 1. Also navigate to Terrafrom Cloud and watch the workspaces being created and run.
 1. When all the runs are finished, you can navigate to the Azure portal and take a look at the subscription and resources that have been created.
+
+#### Clean up
+
+1. Open a terminal in Visual Studio Code.
+1. Navigate to the the `examples` folder with `cd examples`.
+1. Run `./trigger_destroy_demo.ps1`.
+1. Open your GitHub forked repository in the browser.
+1. Navigate to `Actions` in the top menu.
+1. Click on the running action and watch what it is doing.
+1. Also navigate to Terrafrom Cloud and watch the workspaces run and deleted.
+1. When all the runs are finished, you can navigate to the Azure portal and take a look at the subscription to see it has been cleaned to.
