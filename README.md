@@ -30,7 +30,23 @@ This example shows one approach to self-service subscription vending in Azure. I
 
 ## Features
 
-TBC
+This demo has the following concepts:
+
+- A central GitHub repo and pipeline that vends subscriptions.
+- A subscription vending process that creates a Terraform Cloud workspace and vends a subscription via the workspace.
+- A vended subscription includes a number of other resources:
+    - Resource groups
+    - Permissions
+    - User Assigned Managed Identity and Federated Credentials for Terraform Cloud
+    - A user Terraform Cloud workspace
+    - A repository for a persona template which includes variables, secrets, action and example code to deploy a VM
+
+The process flow is:
+
+1. Setup the config to vend your subscription
+1. Trigger the vend GitHub action via repository_dispatch API call
+1. Wait for the management workspace, subscription, user repository and user workspace to be created
+1. Naviagate to the user repository and trigger the action to deploy the example VM workload into the newly vended subscription
 
 ## Getting Started
 
@@ -51,19 +67,46 @@ TBC
 
 There are a few manual steps to get this demo up and running. Please note that this demo is conceptual. You will note that we are using GitHub PAT tokens and Terraform Cloud user API tokens. If you want to use this example for a production scenario, you should use alternative authentication.
 
+#### Setup a Service Principal for Subscription Vending
+
+In order to use this demo, you need you follow the instruction here to create a Service Principal and assign billing account permissions. You then need to generate a secret for it. We'll need the tenant id, client id and client secret for this service principal later on.
+
+You will also need at least one pre-existing subscription in your tenant. We won't deploy or alter anything in that subscription, but due to a limitation of the `azurerm` provider, we need to proved a subsscription id. Take a not of the subscription id for later.
+
+#### Create a Management Group
+For now need a management group other than whatever you default Management Group is to use this demo. If you already have one, then take a note of it's name and use that in place of `sub-vending-demo` in future steps.
+
+1. Login to the Azure Portal
+1. Search for `Management Groups`
+1. Click `+ Create`
+1. Enter `sub-vending-demo` in both the `Management group ID` and `Management group display name` fields
+1. Click `Submit`
+
 #### Generate a GitHub PAT Token
 
-TBC
-
+1. Navigate to [github.com](https://github.com).
+1. Click on your user icon in the top right and select `Settings`.
+1. Scroll down and click on `Developer Settings` in the left navigation.
+1. Click `Personal access tokens` in the left navigation and select `Tokens (classic)`.
+1. Click `Generate new token` at the top and select `Generate new token (classic)`.
+1. Enter `Azure Landing Zone Terraform Accelerator` in the `Note` field.
+1. Alter the `Expiration` drop down and select `Custom`.
+1. Choose tommorrows date in the date picker.
 1. Check the following scopes:
     1. `repo`
     1. `delete_repo`
-
-NOTE: If you are a Microsoft Employee, you must grant your token SSO access to any one Microsoft org you are a member of.
+1. Click `Generate token`.
+1. Copy the token and save it somewhere safe.
+1. If you are a Microsoft Employee, you must grant your token SSO access to any one Microsoft org you are a member of.
+1. Select an organization and click `Authorize`, then follow the prompts to allow SSO.
 
 #### Generate a Terraform Cloud API Token
 
-TBC
+1. Login to Terraform Cloud
+1. Click the user image in the top left and select `User Settings`
+1. Navigate to `Tokens` and click `Create an API token`
+1. Type `Subscription Vending Demo` into the `Description` field and click `Generate token`
+1. Copy the generated token and save it somewhere secure for the next parts of thr setup
 
 #### Setup Terraform Cloud
 
@@ -119,10 +162,22 @@ TBC
 1. Open Visual Studio Code and open the folder of your forked repository.
 1. Copy the `examples/trigger_vend_example.ps1` and name the file `examples/trigger_vend_demo.ps1`.
 1. Open the `trigger_vend_demo.ps1` and edit the variable values as follows:
-    1. `$owner`: This is the GitHub organisation that you forked this repository into.
+    1. `$owner`: This is the GitHub organisation that you forked this repository into
     1. `$repository`: This is the name of your forked repository
     1. `$access_token`: This is the GitHub PAT you created earlier
-    1. ``
+    1. `$subscriptionData`: This is the payload for our example. Edit the following values as follow:
+        1. `subscription_name`: You only need to change this if it clashes with an existing subscription you have.
+        1. `location`: Change this to your desired Azure region
+        1. `subscription_offer`: Choose `DevTest` or `Production` depending on what is available for your billing account
+        1. `subscription_description`: Only change this if you changed the `subscription_name`
+        1. `subscription_management_group`: This should be left as `sub-vending-demo` as per the management group you creatd earlier
+        1. `resource_groups`: Only change these if you wish to update the locations.
+        1. `subscription_owners`: This must be updated to a valid SPN in your Entra ID directory. For example `[ "first.last@org.com" ]`. If you don't update this you won't get access to the vended subscription and the demo will fail.
+        1. `persona_template_organisation`: Don't change this
+        1. `persona_template_repository`: Don't change this
+        1. `repository_organisation`: Set this to the GitHub organisation you wish your user repository to be created in.
+1. Save the file.
+1. Ok, we are all done with the setup.
 
 #### Run the demo
 
