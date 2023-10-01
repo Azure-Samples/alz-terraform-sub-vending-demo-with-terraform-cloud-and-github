@@ -22,8 +22,8 @@ $subscriptionData = @"
         "abc@def.com",
         "ghi@jkl.com"
     ],
-    "persona_template_organisation": "github-organisation-name",
-    "persona_template_repository": "github-repository-name",
+    "persona_template_organisation": "azure-samples",
+    "persona_template_repository": "alz-terraform-sub-vending-demo-with-terraform-cloud-and-github-persona-template-01",
     "repository_organisation": "github-organisation-name"
 }
 "@

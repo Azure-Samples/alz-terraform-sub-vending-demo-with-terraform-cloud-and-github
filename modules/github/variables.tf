@@ -23,13 +23,23 @@ variable "template_repository" {
   description = "Repository Template"
 }
 
-variable "workspace_name" {
+variable "resource_group_name" {
   type        = string
-  description = "Workspace Name"
+  description = "The resouce group target for the template"
 }
 
-variable "access_token" {
+variable "terraform_cloud_organisation" {
   type        = string
-  description = "Access Token"
+  description = "Terraform Cloud Organisation"
+}
+
+variable "terraform_cloud_workspace_name" {
+  type        = string
+  description = "Terraform Cloud Workspace Name"
+}
+
+variable "terraform_cloud_access_token" {
+  type        = string
+  description = "Terrafrom Cloud Access Token"
   sensitive   = true
 }

@@ -11,13 +11,23 @@ resource "github_repository" "application" {
 
 resource "github_actions_secret" "tf_api_token" {
   repository      = github_repository.application.name
-  plaintext_value = var.access_token
+  plaintext_value = var.terraform_cloud_access_token
   secret_name     = "TF_API_TOKEN"
 }
-resource "github_actions_secret" "tf_name" {
-  repository      = github_repository.application.name
-  plaintext_value = var.workspace_name
-  secret_name     = "TF_NAME"
+resource "github_actions_variable" "tf_cloud_organization" {
+  repository    = github_repository.application.name
+  value         = var.terraform_cloud_organisation
+  variable_name = "TF_CLOUD_ORGANIZATION"
+}
+resource "github_actions_variable" "tf_workspace" {
+  repository    = github_repository.application.name
+  value         = var.terraform_cloud_workspace_name
+  variable_name = "TF_WORKSPACE"
+}
+resource "github_actions_variable" "resource_group_name" {
+  repository    = github_repository.application.name
+  value         = var.resource_group_name
+  variable_name = "RESOURCE_GROUP_NAME"
 }
 
 terraform {

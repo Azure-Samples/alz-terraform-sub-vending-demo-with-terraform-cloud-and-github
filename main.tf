@@ -65,12 +65,14 @@ module "lz_vending" {
 }
 
 module "github" {
-  source                  = "./modules/github"
-  repository_name         = local.github_repository_name
-  repository_description  = local.github_repository_name
-  repository_organisation = var.repository_organisation
-  template_organisation   = var.persona_template_organisation
-  template_repository     = var.persona_template_repository
-  workspace_name          = local.terraform_cloud_workspace_name
-  access_token            = module.terraform_cloud_workspace.team_api_token
+  source                         = "./modules/github"
+  repository_name                = local.github_repository_name
+  repository_description         = local.github_repository_name
+  repository_organisation        = var.repository_organisation
+  template_organisation          = var.persona_template_organisation
+  template_repository            = var.persona_template_repository
+  terraform_cloud_organisation   = var.terraform_cloud_organisation
+  terraform_cloud_workspace_name = local.terraform_cloud_workspace_name
+  terraform_cloud_access_token   = module.terraform_cloud_workspace.team_api_token
+  resource_group_name            = var.resource_groups[0].name
 }
