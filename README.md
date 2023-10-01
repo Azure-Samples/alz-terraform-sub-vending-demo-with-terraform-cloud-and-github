@@ -59,6 +59,8 @@ TBC
     1. `repo`
     1. `delete_repo`
 
+NOTE: If you are a Microsoft Employee, you must grant your token SSO access to any one Microsoft org you are a member of.
+
 #### Generate a Terraform Cloud API Token
 
 TBC

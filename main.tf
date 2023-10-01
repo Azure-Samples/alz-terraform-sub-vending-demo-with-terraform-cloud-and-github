@@ -15,6 +15,9 @@ module "lz_vending" {
   # Manage NW RG within Vending
   network_watcher_resource_group_enabled = true
 
+  # Register providers
+  subscription_register_resource_providers_enabled = true
+
   # Set the default location for resources
   location = var.location
 
