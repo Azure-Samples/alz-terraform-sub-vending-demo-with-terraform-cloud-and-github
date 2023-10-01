@@ -24,11 +24,6 @@ resource "github_actions_variable" "tf_workspace" {
   value         = var.terraform_cloud_workspace_name
   variable_name = "TF_WORKSPACE"
 }
-resource "github_actions_variable" "resource_group_name" {
-  repository    = github_repository.application.name
-  value         = var.resource_group_name
-  variable_name = "RESOURCE_GROUP_NAME"
-}
 
 terraform {
   required_providers {

@@ -23,11 +23,6 @@ variable "template_repository" {
   description = "Repository Template"
 }
 
-variable "resource_group_name" {
-  type        = string
-  description = "The resouce group target for the template"
-}
-
 variable "terraform_cloud_organisation" {
   type        = string
   description = "Terraform Cloud Organisation"

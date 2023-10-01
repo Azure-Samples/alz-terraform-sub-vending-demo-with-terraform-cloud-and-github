@@ -58,3 +58,12 @@ resource "tfe_variable" "tfc_azure_run_client_id" {
   workspace_id = tfe_workspace.user_workspace.id
   description  = "a useful description"
 }
+
+resource "tfe_variable" "resource_group_name" {
+  key          = "resource_group_name"
+  value        = var.resource_group_name
+  category     = "terraform"
+  sensitive    = false
+  workspace_id = tfe_workspace.user_workspace.id
+  description  = "a useful description"
+}

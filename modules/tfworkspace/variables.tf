@@ -26,3 +26,8 @@ variable "tfc_azure_run_client_id" {
 variable "project_name" {
   type = string
 }
+
+variable "resource_group_name" {
+  type        = string
+  description = "The resouce group target for the template"
+}
