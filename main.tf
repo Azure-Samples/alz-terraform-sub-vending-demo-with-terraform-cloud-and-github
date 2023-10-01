@@ -78,5 +78,5 @@ module "github" {
   terraform_cloud_organisation   = var.terraform_cloud_organisation
   terraform_cloud_workspace_name = local.terraform_cloud_workspace_name
   terraform_cloud_access_token   = module.terraform_cloud_workspace.team_api_token
-  resource_group_name            = [ for key, resource_groups in var.resource_groups[0].name : resource_group.name if resource_group.primary ][0]
+  resource_group_name            = [ for key, resource_groups in var.resource_groups : resource_group.name if resource_group.primary ][0]
 }
