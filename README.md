@@ -115,6 +115,8 @@ For now need a management group other than whatever you default Management Group
 
 #### Generate a Terraform Cloud API Token
 
+> Note you must be an owner of the TFC organization. We need this permission so that we can create and manage teams.
+
 1. Login to Terraform Cloud
 1. Click the user image in the top left and select `User Settings`
 1. Navigate to `Tokens` and click `Create an API token`
