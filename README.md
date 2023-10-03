@@ -20,13 +20,11 @@ This example shows one approach to self-service subscription vending in Azure. I
 
 | File/folder | Description |
 |-------------|-------------|
-| `terraform-example-deploy` | Some Terraform with Azure Resources for the demo to deploy. |
-| `terraform-oidc-config` | The Terraform to configure Azure and Azure DevOps ready for Managed Identity or OIDC authenticaton. |
-| `.gitignore` | Define what to ignore at commit time. |
-| `CHANGELOG.md` | List of changes to the sample. |
-| `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
-| `README.md` | This README file. |
-| `LICENSE.md` | The license for the sample. |
+| `.github/workflows/*.yml` | GitHub Actions to vend and destroy subscriptions. |
+| `examples` | Scripts showing how to trigger vend and destroy. |
+| `modules` | Terraform sub-modules used in the vending module. |
+| `scripts` | Scripts used in the GitHub action to interact with Terraform Cloud. |
+| `*.tf` | Terraform root module for vending and destroying subscriptions.
 
 ## Features
 
@@ -70,9 +68,9 @@ There are a few manual steps to get this demo up and running. Please note that t
 
 #### Setup a Service Principal for Subscription Vending
 
-In order to use this demo, you need create a Service Principal and assign billing account permissions. You then need to generate a secret for it. We'll need the tenant id, client id and client secret for this service principal later on.
+In order to use this demo, you need create a Service Principal and assign billing account permissions. You then need to generate a secret for it. We'll need the tenant id, client id and client secret for this service principal later on. Follow [these intructions](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/assign-roles-azure-service-principals) to setup the permissions if you haven't done it before.
 
-You will also need at least one pre-existing subscription in your tenant. We won't deploy or alter anything in that subscription, but due to a limitation of the `azurerm` provider, we need to proved a subsscription id. Take a not of the subscription id for later.
+You will also need at least one pre-existing subscription in your tenant. We won't deploy or alter anything in that subscription, but due to a limitation of the `azurerm` provider, we need to provide a subsscription id. Take a note of the subscription id for later.
 
 ##### Create the Service Principal
 
@@ -115,7 +113,7 @@ For now need a management group other than whatever you default Management Group
 
 #### Generate a Terraform Cloud API Token
 
-> Note you must be an owner of the TFC organization. We need this permission so that we can create and manage teams.
+> Note you must be an owner of the Terraform Cloud organization. We need this permission so that we can create and manage teams.
 
 1. Login to Terraform Cloud
 1. Click the user image in the top left and select `User Settings`
@@ -143,7 +141,7 @@ For now need a management group other than whatever you default Management Group
     1. `ARM_SUBSCRIPTION_ID`: Your Azure Subscription Id (remember this won't be used, but is require by the Terraform provider)
     1. `ARM_CLIENT_ID`: The client ID of the service principal that was setup for subscription vending
     1. Check the `Sensitive` box for `ARM_CLIENT_SECRET`: The client secret of the service principal that was setup for subscription vending
-1. repeat the process of clicking `Add variable`, selecting `Terraform variable`, filling our the `Key` and `Value` and clicking `Add variable` as follows:
+1. Repeat the process of clicking `Add variable`, selecting `Terraform variable`, filling our the `Key` and `Value` and clicking `Add variable` as follows:
     1. `terraform_cloud_organisation`: This is the name of you Terraform Cloud Organisation.
     1. `terraform_cloud_user_project`: This is `sub-vend-demo-user`.
     1. `billing_account_type`: Choose between `ea`, `mca` or `mpa` depending on your account type
