@@ -56,6 +56,7 @@ The process flow is:
 - Azure CLI: [Download](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli#install-or-update)
 - An Azure Tenant with Billing Account Access
 - A GitHub Organization: [Free Organization](https://aex.dev.azure.com/signup/)
+- A licensed Terraform Cloud organization: [Portal](https://app.terraform.io/)
 
 ### Installation
 
@@ -69,9 +70,21 @@ There are a few manual steps to get this demo up and running. Please note that t
 
 #### Setup a Service Principal for Subscription Vending
 
-In order to use this demo, you need you follow the instruction here to create a Service Principal and assign billing account permissions. You then need to generate a secret for it. We'll need the tenant id, client id and client secret for this service principal later on.
+In order to use this demo, you need create a Service Principal and assign billing account permissions. You then need to generate a secret for it. We'll need the tenant id, client id and client secret for this service principal later on.
 
 You will also need at least one pre-existing subscription in your tenant. We won't deploy or alter anything in that subscription, but due to a limitation of the `azurerm` provider, we need to proved a subsscription id. Take a not of the subscription id for later.
+
+##### Create the Service Principal
+
+The following command is over-permissive but works well for a demo, you will need to be a global admin and tick the "access management for Azure resources" box in Entra ID.
+
+```bash
+$ az ad sp create-for-rbac -n "terraform-sub-vending-demo" --role "Owner" --scopes "/"
+```
+
+##### Entra ID permissions for the Service Principal
+
+The SPN needs the `User.ReadAll` permission. See the [AzureAD provider documentation](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/guides/service_principal_configuration#azure-active-directory-permissions).
 
 #### Create a Management Group
 For now need a management group other than whatever you default Management Group is to use this demo. If you already have one, then take a note of it's name and use that in place of `sub-vending-demo` in future steps.
