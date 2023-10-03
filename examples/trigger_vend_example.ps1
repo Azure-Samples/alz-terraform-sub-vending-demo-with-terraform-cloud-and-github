@@ -11,11 +11,13 @@ $subscriptionData = @"
     "resource_groups": {
         "rg-demo-001": {
             "name": "rg-demo-001",
-            "location": "uksouth"
+            "location": "uksouth",
+            "primary": true
         },
         "rg-demo-002": {
             "name": "rg-demo-002",
-            "location": "uksouth"
+            "location": "uksouth",
+            "primary": false
         }
     },
     "subscription_owners": [
