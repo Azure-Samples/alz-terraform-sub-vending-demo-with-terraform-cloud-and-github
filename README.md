@@ -4,6 +4,8 @@ languages:
 - terraform
 - hcl
 - yaml
+- powershell
+- json
 name: Azure Landing Zones Subscription Vending with Terraform, Terraform Cloud and GitHub
 description: A sample showing an example of self-service subscription vending with GitHub and Terraform Cloud.
 products:
@@ -15,6 +17,8 @@ urlFragment: alz-terraform-sub-vending
 # Azure Landing Zones Subscription Vending with Terraform, Terraform Cloud and GitHub
 
 This example shows one approach to self-service subscription vending in Azure. It leverages the ALZ Terrafrom subscription vending module, Terraform Cloud and GitHub to demonstrate an end to end process of vending subscriptions for different use cases.
+
+![Overview of the deployment process](.images/overview.png)
 
 ## Content
 
