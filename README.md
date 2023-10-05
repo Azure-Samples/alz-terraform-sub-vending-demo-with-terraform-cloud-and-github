@@ -57,8 +57,9 @@ The process flow is:
 - HashiCorp Terraform CLI: [Download](https://www.terraform.io/downloads)
 - Azure CLI: [Download](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli#install-or-update)
 - An Azure Tenant with Billing Account Access
-- A GitHub Organization: [Free Organization](https://aex.dev.azure.com/signup/)
+- A GitHub Organization: [Free Organization](https://github.com/organizations/plan)
 - A licensed Terraform Cloud organization: [Portal](https://app.terraform.io/)
+> NOTE: This example does not currently have an option for the free tier of Terraform Cloud. It is dependent on being able to create Teams and API Tokens for teams.
 
 ### Installation
 
